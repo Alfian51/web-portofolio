@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Alfian Dafari | Full Stack Web Developer Portfolio</title>
+  <meta name="description" content="Portfolio profesional Alfian Dafari, Full Stack Web Developer. Menghadirkan solusi website modern, premium, dan berkinerja tinggi.">
+  <meta name="keywords" content="Alfian Dafari, Full Stack Developer, Web Developer, Portfolio, Surakarta, React, Next.js, FastAPI, Python">
+  <meta name="author" content="Alfian Dafari">
+  
+  <!-- Favicon placeholder -->
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animation.css">
+  <style>
+    /* Project card screenshot overrides for homepage */
+    .project-image-wrapper {
+      position: relative;
+      overflow: hidden;
+      background: #0F172A;
+    }
+    .project-img-real {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .project-card:hover .project-img-real {
+      transform: scale(1.04);
+    }
+    /* Smart Finance mini coming soon card on homepage */
+    .sf-coming-soon {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 55%, #1E293B 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sf-glow {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .sf-glow-1 {
+      top: -30px; right: -30px;
+      width: 120px; height: 120px;
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.35) 0%, transparent 70%);
+      animation: sf-pulse 3.5s ease-in-out infinite;
+    }
+    .sf-glow-2 {
+      bottom: -20px; left: -20px;
+      width: 100px; height: 100px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, transparent 70%);
+      animation: sf-pulse 3.5s ease-in-out infinite 1.2s;
+    }
+    @keyframes sf-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50%        { transform: scale(1.2); opacity: 1; }
+    }
+    .sf-icons {
+      display: flex;
+      gap: 8px;
+      position: relative;
+      z-index: 2;
+    }
+    .sf-icon-bubble {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: #93C5FD;
+      transition: all 0.3s ease;
+    }
+    .sf-icon-bubble.main {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.5), rgba(96,165,250,0.25));
+      border-color: rgba(96,165,250,0.45);
+      color: #BFDBFE;
+      font-size: 1.2rem;
+    }
+    .sf-badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+    .sf-badge {
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .sf-badge.blue { background: rgba(37,99,235,0.28); color: #93C5FD; border: 1px solid rgba(96,165,250,0.3); }
+    .sf-badge.amber { background: rgba(245,158,11,0.2); color: #FCD34D; border: 1px solid rgba(245,158,11,0.3); }
+    .sf-badge.purple { background: rgba(168,85,247,0.2); color: #D8B4FE; border: 1px solid rgba(168,85,247,0.3); }
+    .sf-title {
+      color: #F8FAFC;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 2;
+      margin: 0;
+    }
+    .sf-sub {
+      color: #64748B;
+      font-size: 0.7rem;
+      text-align: center;
+      max-width: 160px;
+      line-height: 1.4;
+      position: relative;
+      z-index: 2;
+    }
+    .sf-progress-track {
+      width: 100px;
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+    .sf-progress-fill {
+      height: 100%;
+      width: 35%;
+      background: linear-gradient(90deg, #2563EB, #60A5FA);
+      border-radius: 10px;
+      animation: sf-shimmer 2.5s ease-in-out infinite;
+    }
+    @keyframes sf-shimmer {
+      0%   { width: 28%; opacity: 0.8; }
+      50%  { width: 42%; opacity: 1; }
+      100% { width: 28%; opacity: 0.8; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- Scroll to Top Button -->
+  <button id="btn-to-top" aria-label="Scroll ke atas">
+    <i class="bi bi-arrow-up-short" style="font-size: 1.5rem; line-height: 1;"></i>
+  </button>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top custom-navbar" id="main-nav">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-custom" href="#hero">
+        Alfian Dafari<span class="brand-dot">.</span>
+      </a>
+      
+      <button class="navbar-toggler navbar-toggler-custom" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-1 navbar-collapse-custom">
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#hero">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#tentang-saya">Tentang</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#journey">Journey</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#skills">Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#projects">Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#contact">Kontak</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section d-flex align-items-center">
+    <div class="bg-grid-pattern"></div>
+    <div class="hero-circle-glow"></div>
+    <div class="hero-circle-glow-2"></div>
+    
+    <div class="container hero-content">
+      <div class="row align-items-center">
+        <!-- Hero Text -->
+        <div class="col-lg-6 reveal-el reveal-left">
+          <div class="hero-tag">
+            <i class="bi bi-lightning-charge-fill me-2"></i> Full Stack Developer
+          </div>
+          <h1 class="hero-title">
+            Halo, Saya <span class="hero-gradient-text">Alfian Dafari</span>
+          </h1>
+          <p class="hero-subtitle">Membangun Solusi Digital Masa Depan</p>
+          <p class="hero-desc">
+            Saya adalah pengembang web yang berdedikasi untuk menciptakan aplikasi web modern, ringan, cepat, dan responsif. Menggabungkan estetika visual premium dengan arsitektur kode yang bersih dan terstruktur.
+          </p>
+          <div class="d-flex flex-wrap gap-3 hero-buttons">
+            <a href="#projects" class="btn-primary-custom">
+              Lihat Project <i class="bi bi-arrow-right-short"></i>
+            </a>
+            <a href="#contact" class="btn-secondary-custom">
+              Hubungi Saya <i class="bi bi-chat-text"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Hero Illustration -->
+        <div class="col-lg-6 hero-illustration reveal-el reveal-right delay-200 mt-5 mt-lg-0">
+          <div class="window-mockup anim-float">
+            <div class="window-header">
+              <div class="window-dots">
+                <span class="window-dot red"></span>
+                <span class="window-dot yellow"></span>
+                <span class="window-dot green"></span>
+              </div>
+              <div class="window-title">alfian_dafari.js</div>
+              <div></div>
+            </div>
+            <div class="window-body">
+              <pre><code style="color: #94A3B8;"><span class="code-keyword">const</span> developer = {
+  name: <span class="code-string">"Alfian Dafari"</span>,
+  profession: <span class="code-string">"Full Stack Web Developer"</span>,
+  skills: [
+    <span class="code-string">"Frontend"</span>, 
+    <span class="code-string">"Backend"</span>, 
+    <span class="code-string">"Artificial Intelligence"</span>
+  ],
+  passion: <span class="code-string">"Building premium digital experiences"</span>,
+  location: <span class="code-string">"Surakarta, Jawa Tengah"</span>,
+  readyToGrow: <span class="code-keyword">true</span>,
+  code: <span class="code-keyword">function</span>() {
+    <span class="code-keyword">return</span> <span class="code-string">"Clean Code & Performance First"</span>;
+  }
+};
+
+<span class="code-comment">// Output</span>
+console.log(developer.code());
+<span class="code-function">=></span> <span class="code-string" style="color: #60A5FA;">"Clean Code & Performance First"</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tentang Saya Section -->
+  <section id="tentang-saya" class="section-padding">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0 reveal-el reveal-left">
+          <div class="section-title-wrapper text-start mb-4">
+            <span class="section-tag">Tentang Saya</span>
+            <h2 class="section-title">Membangun Solusi Digital dengan Presisi & Kreativitas</h2>
+          </div>
+          <p class="mb-4">
+            Latar belakang saya sebagai pengembang web didorong oleh hasrat yang kuat untuk terus belajar dan beradaptasi dengan perkembangan teknologi. Saya percaya bahwa kode yang baik adalah kode yang bersih (clean code), mudah dirawat, dan memberikan nilai nyata bagi pengguna akhir.
+          </p>
+          <p class="mb-4">
+            Dengan fokus pada pengembangan Full Stack, saya berupaya menjembatani estetika visual modern dengan efisiensi logika server. Saya selalu bersemangat untuk menghadapi tantangan baru dan berkolaborasi dalam proyek-proyek inovatif yang menuntut kreativitas tinggi serta komitmen mendalam untuk berkembang.
+          </p>
+        </div>
+        
+        <div class="col-lg-6 reveal-el reveal-right delay-200">
+          <div class="about-card">
+            <h3 class="h5 mb-4 text-center text-lg-start" style="font-weight: 600;">Metrik Pembelajaran & Pertumbuhan</h3>
+            <div class="row">
+              <div class="col-4 about-stat">
+                <div class="about-stat-number">3+</div>
+                <div class="about-stat-label">Proyek Rilis</div>
+              </div>
+              <div class="col-4 about-stat">
+                <div class="about-stat-number">1000+</div>
+                <div class="about-stat-label">Jam Coding</div>
+              </div>
+              <div class="col-4 about-stat">
+                <div class="about-stat-number">4</div>
+                <div class="about-stat-label">Kategori Skill</div>
+              </div>
+            </div>
+            
+            <div class="mt-4 pt-3 border-top">
+              <div class="d-flex align-items-center gap-3">
+                <div class="badge-custom badge-primary"><i class="bi bi-mortarboard-fill"></i> Fokus Belajar</div>
+                <span class="small text-muted">Selalu mengeksplorasi teknologi baru dan praktik terbaik arsitektur web modern.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey Section -->
+  <section id="journey" class="section-padding journey-section">
+    <div class="container">
+      <div class="section-title-wrapper text-center">
+        <span class="section-tag">Perjalanan Belajar</span>
+        <h2 class="section-title">Alur Pengembangan Teknologi</h2>
+      </div>
+      
+      <div class="journey-container reveal-el reveal-up">
+        <div class="journey-timeline">
+          <!-- HTML -->
+          <div class="journey-node">
+            <div class="journey-dot-outer">
+              <div class="journey-dot-inner"><i class="bi bi-filetype-html"></i></div>
+            </div>
+            <h3 class="journey-title-node">HTML</h3>
+            <p class="journey-desc-node">Dasar struktur dokumen web.</p>
+          </div>
+          <!-- CSS -->
+          <div class="journey-node">
+            <div class="journey-dot-outer">
+              <div class="journey-dot-inner"><i class="bi bi-filetype-css"></i></div>
+            </div>
+            <h3 class="journey-title-node">CSS</h3>
+            <p class="journey-desc-node">Desain visual & tata letak responsif.</p>
+          </div>
+          <!-- JS -->
+          <div class="journey-node">
+            <div class="journey-dot-outer">
+              <div class="journey-dot-inner"><i class="bi bi-filetype-js"></i></div>
+            </div>
+            <h3 class="journey-title-node">JavaScript</h3>
+            <p class="journey-desc-node">Logika interaktif & manipulasi DOM.</p>
+          </div>
+          <!-- Bootstrap -->
+          <div class="journey-node">
+            <div class="journey-dot-outer">
+              <div class="journey-dot-inner"><i class="bi bi-bootstrap"></i></div>
+            </div>
+            <h3 class="journey-title-node">Bootstrap</h3>
+            <p class="journey-desc-node">Pengembangan UI responsif yang cepat.</p>
+          </div>
+          <!-- React -->
+          <div class="journey-node">
+            <div class="journey-dot-outer">
+              <div class="journey-dot-inner"><i class="bi bi-filetype-jsx"></i></div>
+            </div>
+            <h3 class="journey-title-node">React</h3>
+            <p class="journey-desc-node">Aplikasi berbasis komponen modern.</p>
+          </div>
+          <!-- Next.js -->
+          <div class="journey-node">
+            <div class="journey-dot-outer">
+              <div class="journey-dot-inner"><i class="bi bi-globe"></i></div>
+            </div>
+            <h3 class="journey-title-node">Next.js</h3>
+            <p class="journey-desc-node">Rendering server-side & optimasi SEO.</p>
+          </div>
+          <!-- Python -->
+          <div class="journey-node">
+            <div class="journey-dot-outer">
+              <div class="journey-dot-inner"><i class="bi bi-filetype-py"></i></div>
+            </div>
+            <h3 class="journey-title-node">Python</h3>
+            <p class="journey-desc-node">Pemrograman backend & pengolahan data.</p>
+          </div>
+          <!-- FastAPI -->
+          <div class="journey-node">
+            <div class="journey-dot-outer">
+              <div class="journey-dot-inner"><i class="bi bi-cpu"></i></div>
+            </div>
+            <h3 class="journey-title-node">FastAPI</h3>
+            <p class="journey-desc-node">Pembuatan API berkecepatan tinggi.</p>
+          </div>
+          <!-- AI -->
+          <div class="journey-node">
+            <div class="journey-dot-outer">
+              <div class="journey-dot-inner"><i class="bi bi-robot"></i></div>
+            </div>
+            <h3 class="journey-title-node">AI</h3>
+            <p class="journey-desc-node">Masa depan otomatisasi & kecerdasan buatan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section-padding">
+    <div class="container">
+      <div class="section-title-wrapper text-center">
+        <span class="section-tag">Keahlian</span>
+        <h2 class="section-title">Kumpulan Teknologi & Alat Kerja</h2>
+      </div>
+      
+      <div class="skills-grid">
+        <!-- Frontend -->
+        <div class="skills-category-card reveal-el reveal-up">
+          <div class="skills-category-header">
+            <div class="skills-category-icon"><i class="bi bi-code-slash"></i></div>
+            <h3 class="skills-category-title">Frontend Core</h3>
+          </div>
+          <div class="skills-list">
+            <div class="skill-item">
+              <div class="skill-icon-wrapper"><i class="bi bi-patch-check-fill"></i></div>
+              <div class="skill-info"><div class="skill-name">HTML5</div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrapper"><i class="bi bi-patch-check-fill"></i></div>
+              <div class="skill-info"><div class="skill-name">CSS3</div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrapper"><i class="bi bi-patch-check-fill"></i></div>
+              <div class="skill-info"><div class="skill-name">JavaScript (ES6+)</div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrapper"><i class="bi bi-patch-check-fill"></i></div>
+              <div class="skill-info"><div class="skill-name">Bootstrap 5</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frameworks -->
+        <div class="skills-category-card reveal-el reveal-up delay-100">
+          <div class="skills-category-header">
+            <div class="skills-category-icon"><i class="bi bi-layer-backward"></i></div>
+            <h3 class="skills-category-title">UI Frameworks</h3>
+          </div>
+          <div class="skills-list">
+            <div class="skill-item">
+              <div class="skill-icon-wrapper"><i class="bi bi-patch-check-fill"></i></div>
+              <div class="skill-info"><div class="skill-name">React</div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrapper"><i class="bi bi-patch-check-fill"></i></div>
+              <div class="skill-info"><div class="skill-name">Next.js</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="skills-category-card reveal-el reveal-up delay-200">
+          <div class="skills-category-header">
+            <div class="skills-category-icon"><i class="bi bi-database"></i></div>
+            <h3 class="skills-category-title">Backend & API</h3>
+          </div>
+          <div class="skills-list">
+            <div class="skill-item">
+              <div class="skill-icon-wrapper"><i class="bi bi-patch-check-fill"></i></div>
+              <div class="skill-info"><div class="skill-name">Python</div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrapper"><i class="bi bi-patch-check-fill"></i></div>
+              <div class="skill-info"><div class="skill-name">FastAPI</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="skills-category-card reveal-el reveal-up delay-300">
+          <div class="skills-category-header">
+            <div class="skills-category-icon"><i class="bi bi-tools"></i></div>
+            <h3 class="skills-category-title">Tools & Hosting</h3>
+          </div>
+          <div class="skills-list">
+            <div class="skill-item">
+              <div class="skill-icon-wrapper"><i class="bi bi-patch-check-fill"></i></div>
+              <div class="skill-info"><div class="skill-name">Git & GitHub</div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrapper"><i class="bi bi-patch-check-fill"></i></div>
+              <div class="skill-info"><div class="skill-name">VS Code</div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrapper"><i class="bi bi-patch-check-fill"></i></div>
+              <div class="skill-info"><div class="skill-name">Vercel</div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrapper"><i class="bi bi-patch-check-fill"></i></div>
+              <div class="skill-info"><div class="skill-name">Firebase Hosting</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section-padding" style="background-color: white; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-title-wrapper text-center">
+        <span class="section-tag">Featured Projects</span>
+        <h2 class="section-title">Karya & Proyek Terpilih</h2>
+      </div>
+      
+      <div class="row g-4">
+        <!-- UMKM Website -->
+        <div class="col-md-6 col-lg-6 col-xl-3 reveal-el reveal-up">
+          <div class="project-card">
+            <div class="project-image-wrapper" style="padding-top: 56.25%;">
+              <img
+                src="assets/screenshots/umkm.png"
+                alt="Screenshot UMKM Website - Katalog Produk Digital"
+                class="project-img-real position-absolute top-0 start-0"
+                loading="lazy"
+              >
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">UMKM Website</h3>
+              <p class="project-desc">Platform digital modern untuk memamerkan produk dan menghubungkan pelaku usaha UMKM lokal langsung ke pelanggan online.</p>
+              <div class="project-tech-stack">
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Bootstrap 5</span>
+              </div>
+              <div class="project-links mb-3">
+                <a href="https://github.com/Alfian51/umkm" target="_blank" class="btn-project-action secondary" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>
+                <a href="https://umkm-navy.vercel.app/" target="_blank" class="btn-project-action primary" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right"></i> Live</a>
+              </div>
+              <a href="projects/umkm.html" class="btn-project-action secondary w-100"><i class="bi bi-info-circle"></i> Info Detail</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Indo Cerpen -->
+        <div class="col-md-6 col-lg-6 col-xl-3 reveal-el reveal-up delay-100">
+          <div class="project-card">
+            <div class="project-image-wrapper" style="padding-top: 56.25%;">
+              <img
+                src="assets/screenshots/indo-cerpen.png"
+                alt="Screenshot Indo Cerpen - Platform Baca Tulis Cerpen Indonesia"
+                class="project-img-real position-absolute top-0 start-0"
+                loading="lazy"
+              >
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Indo Cerpen</h3>
+              <p class="project-desc">Aplikasi web pembacaan cerita pendek interaktif dengan skema malam yang ramah mata serta fitur penyimpanan favorit.</p>
+              <div class="project-tech-stack">
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Vercel</span>
+              </div>
+              <div class="project-links mb-3">
+                <a href="https://github.com/Alfian51/Indo-Cerpen" target="_blank" class="btn-project-action secondary" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>
+                <a href="https://web-cerpen.vercel.app/" target="_blank" class="btn-project-action primary" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right"></i> Live</a>
+              </div>
+              <a href="projects/indo-cerpen.html" class="btn-project-action secondary w-100"><i class="bi bi-info-circle"></i> Info Detail</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kasir Caffe -->
+        <div class="col-md-6 col-lg-6 col-xl-3 reveal-el reveal-up delay-200">
+          <div class="project-card">
+            <div class="project-image-wrapper" style="padding-top: 56.25%;">
+              <img
+                src="assets/screenshots/kasir-caffe.png"
+                alt="Screenshot Kasir Caffe - Sistem POS Kafe Senja Kopi"
+                class="project-img-real position-absolute top-0 start-0"
+                loading="lazy"
+              >
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Kasir Caffe</h3>
+              <p class="project-desc">Sistem Kasir Point of Sale (POS) cepat berbasis web dengan fitur manajemen menu, keranjang dinamis, dan cetak struk.</p>
+              <div class="project-tech-stack">
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Firebase</span>
+              </div>
+              <div class="project-links mb-3">
+                <a href="https://github.com/Alfian51/Kasir_Caffe" target="_blank" class="btn-project-action secondary" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>
+                <a href="https://kasircafe-f8cdf.web.app/" target="_blank" class="btn-project-action primary" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right"></i> Live</a>
+              </div>
+              <a href="projects/kasir-caffe.html" class="btn-project-action secondary w-100"><i class="bi bi-info-circle"></i> Info Detail</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Smart Finance -->
+        <div class="col-md-6 col-lg-6 col-xl-3 reveal-el reveal-up delay-300">
+          <div class="project-card">
+            <div class="project-image-wrapper" style="padding-top: 56.25%;">
+              <!-- Smart Finance: Coming Soon mini-card (auto-switches to img when smart-finance.png exists) -->
+              <img
+                src="assets/screenshots/smart-finance.png"
+                alt="Screenshot Smart Finance"
+                class="project-img-real position-absolute top-0 start-0"
+                id="sf-card-img"
+                style="display: none;"
+              >
+              <div class="sf-coming-soon position-absolute top-0 start-0 w-100 h-100" id="sf-card-cs">
+                <!-- Glow orbs -->
+                <div class="sf-glow sf-glow-1"></div>
+                <div class="sf-glow sf-glow-2"></div>
+                <!-- Icon row -->
+                <div class="sf-icons">
+                  <div class="sf-icon-bubble"><i class="bi bi-bar-chart-line-fill"></i></div>
+                  <div class="sf-icon-bubble main"><i class="bi bi-cpu-fill"></i></div>
+                  <div class="sf-icon-bubble"><i class="bi bi-stars"></i></div>
+                  <div class="sf-icon-bubble"><i class="bi bi-rocket-takeoff-fill"></i></div>
+                </div>
+                <!-- Badges -->
+                <div class="sf-badges">
+                  <span class="sf-badge blue">🚧 Coming Soon</span>
+                  <span class="sf-badge amber">⚙️ In Dev</span>
+                  <span class="sf-badge purple">🤖 AI</span>
+                </div>
+                <!-- Title -->
+                <p class="sf-title">Smart Finance</p>
+                <p class="sf-sub">Platform Keuangan Berbasis AI</p>
+                <!-- Progress bar -->
+                <div class="sf-progress-track">
+                  <div class="sf-progress-fill"></div>
+                </div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <h3 class="project-title m-0">Smart Finance</h3>
+                <span class="badge bg-light text-dark text-xs border" style="font-size: 0.65rem;">COMING SOON</span>
+              </div>
+              <p class="project-desc">Aplikasi asisten cerdas pencatatan keuangan personal dengan analisis grafik interaktif dan integrasi backend API cepat.</p>
+              <div class="project-tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Bootstrap 5</span>
+              </div>
+              <div class="project-links mb-3">
+                <button class="btn-project-action secondary" disabled><i class="bi bi-github"></i> GitHub</button>
+                <button class="btn-project-action primary" disabled><i class="bi bi-lock"></i> Live Demo</button>
+              </div>
+              <a href="projects/smart-finance.html" class="btn-project-action secondary w-100"><i class="bi bi-info-circle"></i> Info Detail</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section-padding">
+    <div class="container">
+      <div class="section-title-wrapper text-center">
+        <span class="section-tag">Hubungi Saya</span>
+        <h2 class="section-title">Mari Bekerja Sama & Tumbuh Bersama</h2>
+      </div>
+      
+      <div class="row g-5">
+        <!-- Contact Information -->
+        <div class="col-lg-5 reveal-el reveal-left">
+          <h3 class="h4 mb-4" style="font-weight: 700;">Informasi Kontak</h3>
+          <p class="mb-5">Silakan hubungi saya melalui jalur resmi di bawah ini untuk tawaran proyek, kolaborasi, diskusi teknologi, atau sekadar bertukar sapa.</p>
+          
+          <div class="contact-info-list">
+            <!-- Email -->
+            <div class="contact-info-item">
+              <div class="contact-info-icon-wrapper"><i class="bi bi-envelope-at-fill"></i></div>
+              <div class="contact-info-details">
+                <span class="contact-info-title">Email Resmi</span>
+                <a href="mailto:alfiandafari29@gmail.com" class="contact-info-value">alfiandafari29@gmail.com</a>
+              </div>
+            </div>
+            
+            <!-- WhatsApp -->
+            <div class="contact-info-item">
+              <div class="contact-info-icon-wrapper"><i class="bi bi-whatsapp"></i></div>
+              <div class="contact-info-details">
+                <span class="contact-info-title">WhatsApp</span>
+                <a href="https://wa.me/{{ISI_NOMOR_WHATSAPP}}" target="_blank" rel="noopener noreferrer" class="contact-info-value">Kirim Pesan Chat</a>
+              </div>
+            </div>
+
+            <!-- GitHub -->
+            <div class="contact-info-item">
+              <div class="contact-info-icon-wrapper"><i class="bi bi-github"></i></div>
+              <div class="contact-info-details">
+                <span class="contact-info-title">GitHub Profile</span>
+                <a href="https://github.com/Alfian51" target="_blank" rel="noopener noreferrer" class="contact-info-value">github.com/Alfian51</a>
+              </div>
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="contact-info-item">
+              <div class="contact-info-icon-wrapper"><i class="bi bi-linkedin"></i></div>
+              <div class="contact-info-details">
+                <span class="contact-info-title">LinkedIn Profile</span>
+                <a href="https://www.linkedin.com/in/alfian-dafari-b70425406/" target="_blank" rel="noopener noreferrer" class="contact-info-value">Alfian Dafari</a>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="contact-info-item">
+              <div class="contact-info-icon-wrapper"><i class="bi bi-geo-alt-fill"></i></div>
+              <div class="contact-info-details">
+                <span class="contact-info-title">Lokasi</span>
+                <span class="contact-info-value text-dark">Surakarta, Jawa Tengah</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="col-lg-7 reveal-el reveal-right delay-200">
+          <div class="contact-card">
+            <h3 class="h4 mb-4" style="font-weight: 700;">Kirim Pesan Langsung</h3>
+            <form id="contactForm" novalidate>
+              <div class="form-floating-custom">
+                <label for="name" class="form-label-custom">Nama Lengkap</label>
+                <input type="text" id="name" class="form-control-custom" placeholder="Masukkan nama lengkap Anda" required>
+              </div>
+              
+              <div class="form-floating-custom">
+                <label for="email" class="form-label-custom">Alamat Email</label>
+                <input type="email" id="email" class="form-control-custom" placeholder="name@example.com" required>
+              </div>
+              
+              <div class="form-floating-custom">
+                <label for="message" class="form-label-custom">Pesan</label>
+                <textarea id="message" class="form-control-custom" placeholder="Tuliskan pesan atau detail penawaran proyek Anda di sini..." required></textarea>
+              </div>
+              
+              <button type="submit" class="btn-primary-custom w-100 py-3 justify-content-center">
+                Kirim Pesan <i class="bi bi-send-fill ms-1"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-section text-center">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#hero" class="footer-link-item">Beranda</a>
+        <a href="#tentang-saya" class="footer-link-item">Tentang</a>
+        <a href="#journey" class="footer-link-item">Journey</a>
+        <a href="#skills" class="footer-link-item">Skills</a>
+        <a href="#projects" class="footer-link-item">Project</a>
+        <a href="#contact" class="footer-link-item">Kontak</a>
+      </div>
+      <p class="small text-muted mb-0">
+        &copy; 2026 Alfian Dafari. All rights reserved. Didesain dengan presisi menggunakan Bootstrap 5 &amp; Vanilla JS.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS Modules -->
+  <script src="js/navbar.js"></script>
+  <script src="js/animation.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/projects.js"></script>
+  <script>
+    /* Smart Finance Homepage Card Auto-Detection
+     * If assets/screenshots/smart-finance.png exists,
+     * swap the Coming Soon card with the real screenshot. */
+    (function () {
+      var img = new Image();
+      img.onload = function () {
+        var cardImg = document.getElementById('sf-card-img');
+        var cardCs  = document.getElementById('sf-card-cs');
+        if (cardImg && cardCs) {
+          cardCs.style.display  = 'none';
+          cardImg.style.display = 'block';
+        }
+      };
+      img.src = 'assets/screenshots/smart-finance.png?t=' + Date.now();
+    })();
+  </script>
+</body>
+</html>
